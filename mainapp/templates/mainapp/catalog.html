@@ -1,0 +1,36 @@
+{% extends 'mainapp/base.html' %}
+
+{% load staticfiles %}
+
+            {% block menu %}
+            <div class="top-catalog">
+                <div class="header">
+                    <a class="logo" href="{% url 'index' %}"><img src="{% static 'img/logo.svg' %}" alt="logo"></a>
+                    <ul class="menu">
+                        <li><a href="{% url 'index' %}" class="menu-link">HOME </a></li>
+                        <li><a href="{% url 'catalog' %}" class="menu-link-active menu-link">PRODUCTS </a></li>
+                        <li><a href="#" class="menu-link">HISTORY </a></li>
+                        <li><a href="#" class="menu-link">SHOWROOM</a></li>
+                        <li><a href="{% url 'contacts' %}" class="menu-link">CONTACT</a></li>
+                        <li>
+                            <a href="#" class="menu-link"><img src="{% static 'img/search.svg' %}" alt="search"></a>
+                        </li>
+                    </ul>
+                </div>
+                    <h2 class="top-h2">Our Products Range</h2>
+
+            </div>
+            {% endblock %}
+            
+            {% block content %}
+            <div class="product-sets">
+                <ul class="sets-menu">
+                       <li><a href="#" class="sets-menu-link-active sets-menu-link">All</a></li>
+                        <li><a href="#" class="sets-menu-link">HOME </a></li>
+                        <li><a href="#" class="sets-menu-link">office</a></li>
+                        <li><a href="#" class="sets-menu-link">furniture</a></li>
+                        <li><a href="#" class="sets-menu-link">modern</a></li>
+                        <li><a href="#" class="sets-menu-link">classic</a></li>
+                    </ul>
+            </div>
+            {% endblock %}
