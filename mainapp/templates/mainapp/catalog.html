@@ -6,16 +6,7 @@
             <div class="top-catalog">
                 <div class="header">
                     <a class="logo" href="{% url 'index' %}"><img src="{% static 'img/logo.svg' %}" alt="logo"></a>
-                    <ul class="menu">
-                        <li><a href="{% url 'index' %}" class="menu-link">HOME </a></li>
-                        <li><a href="{% url 'catalog' %}" class="menu-link-active menu-link">PRODUCTS </a></li>
-                        <li><a href="#" class="menu-link">HISTORY </a></li>
-                        <li><a href="#" class="menu-link">SHOWROOM</a></li>
-                        <li><a href="{% url 'contacts' %}" class="menu-link">CONTACT</a></li>
-                        <li>
-                            <a href="#" class="menu-link"><img src="{% static 'img/search.svg' %}" alt="search"></a>
-                        </li>
-                    </ul>
+                    {% include 'mainapp/includes/inc_menu.html' %}
                 </div>
                     <h2 class="top-h2">Our Products Range</h2>
 
