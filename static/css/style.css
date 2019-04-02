@@ -10,7 +10,7 @@ body {
 
 @font-face {
     font-family: 'Montserrat-Thin';
-    src: url(fonts/Montserrat-Thin.otf);
+    src: url('/static/fonts/Montserrat-Thin.otf');
 }
 
 body {
@@ -25,7 +25,7 @@ body {
 .slider {
     display: flex;
     height: 800px;
-    background-image: url(img/slider-img.jpg);
+    background-image: url('/static/img/slider-img.jpg');
     flex-direction: column;
     justify-content: space-between;
 }

@@ -1,0 +1,18 @@
+{% load staticfiles %}
+<ul class="sets-menu">
+
+    {%  for category in cat_menu %}
+           <li>
+               <a href="{% url category.name %}"
+                  class="{% if request.resolver_match.url_name == category.name %}
+                  sets-menu-link-active sets-menu-link
+                  {% else %}
+                    sets-menu-link
+                   {% endif %}">
+                {{ category.name }}
+                </a>
+           </li>
+               {% endfor %}
+</ul>
+
+
