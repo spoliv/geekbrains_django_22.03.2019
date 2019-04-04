@@ -15,11 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls.static import static
 import mainapp.views as mainapp
 
 urlpatterns = [
     url(r'^$', mainapp.main, name='index'),
     url(r'^catalog/', mainapp.products, name='catalog'),
+    url(r'^showroom/', mainapp.showroom, name='showroom'),
     url(r'^contacts/', mainapp.contact, name='contacts'),
+url(r'^all/', mainapp.products, name='all'),
+url(r'^home/', mainapp.products, name='home'),
+url(r'^office/', mainapp.products, name='office'),
+url(r'^furniture/', mainapp.products, name='furniture'),
+url(r'^modern/', mainapp.products, name='modern'),
+url(r'^classic/', mainapp.products, name='classic'),
+
     url(r'^admin/', admin.site.urls),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
