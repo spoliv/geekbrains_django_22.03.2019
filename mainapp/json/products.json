@@ -1,0 +1,23 @@
+[
+  {
+    "category": "office",
+    "name": "Кресло офисное",
+    "price": 2000,
+    "quantity": 5
+  },
+
+  {
+    "category": "modern",
+    "name": "Стул оригинальный",
+    "price": 1500,
+    "quantity": 10
+  },
+
+  {
+    "category": "classic",
+    "name": "Стул кухонный",
+    "price": 550,
+    "quantity": 13
+  }
+
+  ]
