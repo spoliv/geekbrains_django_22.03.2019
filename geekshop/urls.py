@@ -17,10 +17,13 @@ from django.contrib import admin
 from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import include
 import mainapp.views as mainapp
+import authapp.views as authapp
 
 urlpatterns = [
     url(r'^$', mainapp.main, name='index'),
+    url(r'^auth/', include('authapp.urls', namespace='auth')),
     url(r'^catalog/', mainapp.products, name='catalog'),
     url(r'^showroom/', mainapp.showroom, name='showroom'),
     url(r'^contacts/', mainapp.contact, name='contacts'),
