@@ -25,5 +25,31 @@
                         <li><a href="#" class="sets-menu-link">classic</a></li>
                     </ul>-->
 
+            <br>
+            <br>
+            <br>
+            <br>
+
+                <div>
+                    {% for product in products %}
+                        <a href="#">
+                            <img src="/media/{{ product.image }}" alt="product">
+                            <br>
+                            <h4>{{ product.name }}</h4>
+                            <a href="{% url 'basket:add' product.pk %}">Добавить в корзину</a>
+                            <br>
+                            <a href="{% url 'basket:remove' product.pk %}">Удалить из корзины</a>
+                            <br>
+                            <br>
+                            <p>{{ product.description }}</p>
+
+                        </a>
+
+                    {% endfor %}
+                </div>
+            <div>
+                <h2>Количество слотов товаров в корзине {{ basket|length }}</h2>
             </div>
+            </div>
+
             {% endblock %}

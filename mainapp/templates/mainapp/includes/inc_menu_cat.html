@@ -1,10 +1,19 @@
 {% load staticfiles %}
 <ul class="sets-menu">
-
+<li>
+    <a href="{% url 'products:category' 0 %}"
+       class="{% if request.resolver_match.kwargs.pk == '0' %}
+                sets-menu-link-active sets-menu-link
+                {% else %}
+                    sets-menu-link
+              {% endif %}">
+      all
+    </a>
+</li>
     {%  for category in cat_menu %}
            <li>
-               <a href="{% url category.name %}"
-                  class="{% if request.resolver_match.url_name == category.name %}
+                <a href="{% url 'products:category' category.pk %}"
+         class="{% if request.resolver_match.kwargs.pk|add:'0' == category.pk %}
                   sets-menu-link-active sets-menu-link
                   {% else %}
                     sets-menu-link
