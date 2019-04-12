@@ -6,7 +6,15 @@
             <div class="slider padding-site">
                 <div class="header">
                     <a class="logo" href="{% url 'index' %}"><img src="{% static 'img/logo.svg' %}" alt="logo"></a>
-                     {% include 'mainapp/includes/inc_menu.html' %}
+                    <a href="{% url 'basket:view' %}" class="basket">
+      <span>
+        {% if basket %}
+          {{ basket.total_cost|floatformat:0 }} руб
+          ({{ basket.total_quantity }} шт)
+        {% endif %}
+      </span>
+    </a>
+                    {% include 'mainapp/includes/inc_menu.html' %}
                 </div>
             </div>
             {% endblock %}

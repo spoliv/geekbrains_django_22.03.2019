@@ -11,5 +11,21 @@ class Basket(models.Model):
     quantity = models.PositiveIntegerField(verbose_name='количество', default=1)
     add_datetime = models.DateTimeField(verbose_name='время', auto_now_add=True)
 
+    @property
+    def product_cost(self):
+        return self.product.price * self.quantity
+
+    @property
+    def total_quantity(self):
+        items = Basket.objects.filter(user=self.user)
+        totalquantity = sum(list(map(lambda x: x.quantity, items)))
+        return totalquantity
+
+    @property
+    def total_cost(self):
+        items = Basket.objects.filter(user=self.user)
+        totalcost = sum(list(map(lambda x: x.product_cost, items)))
+        return totalcost
+
     def __str__(self):
         return self.user.username + ' '+ self.product.name

@@ -16,40 +16,18 @@
             {% block content %}
             <div class="product-sets">
             {% include 'mainapp/includes/inc_menu_cat.html' %}
-                <!--<ul class="sets-menu">
-                       <li><a href="#" class="sets-menu-link-active sets-menu-link">All</a></li>
-                        <li><a href="#" class="sets-menu-link">HOME </a></li>
-                        <li><a href="#" class="sets-menu-link">office</a></li>
-                        <li><a href="#" class="sets-menu-link">furniture</a></li>
-                        <li><a href="#" class="sets-menu-link">modern</a></li>
-                        <li><a href="#" class="sets-menu-link">classic</a></li>
-                    </ul>-->
-
             <br>
             <br>
             <br>
             <br>
 
-                <div>
+                <div class="products set1-position">
                     {% for product in products %}
-                        <a href="#">
-                            <img src="/media/{{ product.image }}" alt="product">
-                            <br>
-                            <h4>{{ product.name }}</h4>
-                            <a href="{% url 'basket:add' product.pk %}">Добавить в корзину</a>
-                            <br>
-                            <a href="{% url 'basket:remove' product.pk %}">Удалить из корзины</a>
-                            <br>
-                            <br>
-                            <p>{{ product.description }}</p>
-
+                        <a href="#" class="products-img">
+                            <img width="370px" src="/media/{{ product.image }}" alt="product">
                         </a>
-
                     {% endfor %}
                 </div>
-            <div>
-                <h2>Количество слотов товаров в корзине {{ basket|length }}</h2>
-            </div>
             </div>
 
             {% endblock %}
