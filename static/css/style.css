@@ -235,12 +235,12 @@ body {
 
 .promo-img1 {
     width: 683px;
-    background: url(img/promo-img1.jpg);
+    background: url('/static/img/promo-img1.jpg');
 }
 
 .promo-img {
     width: 683px;
-    background: url(img/promo-img.jpg);
+    background: url('/static/img/promo-img.jpg');
 }
 
 .trending-products {
@@ -408,7 +408,7 @@ img[alt="strelka"] {
 .hot-deals {
     width: 100%;
     height: 800px;
-    background-image: url(img/slider.jpg);
+    background-image: url('/static/img/slider.jpg');
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -437,7 +437,7 @@ img[alt="strelka"] {
 .block-1 {
     width: 570px;
     height: 570px;
-    background-image: url(img/product-1-lg.jpg);
+    background-image: url('/static/img/product-1-lg.jpg');
 }
 
 .exclusive-product {
@@ -457,7 +457,7 @@ img[alt="strelka"] {
 .mobile-app {
     width: 100%;
     height: 516px;
-    background-image: url(img/back-img.jpg);
+    background-image: url('/static/img/back-img.jpg');
 }
 
 .footer-back {
@@ -889,7 +889,9 @@ i {
 .details-hot-deal {
     height: 723px;
     background-color: #ffffff;
+    display: flex;
 }
+
 img[alt="small-chair"] {
     margin-left: 98px;
     margin-top: 72px;
@@ -902,4 +904,78 @@ img[alt="small-chair"] {
 .temp_div {
     height: 4522px;
     background-color: white;
+}
+
+.text-detail {
+    width: 100%;
+}
+
+.promo_name_detail {
+    color: #212121;
+    font-size: 27px;
+    font-weight: 700;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.name_product {
+    color: red;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.price {
+    color: #212121;
+    font-family: "Montserrat-Thin";
+    font-size: 40px;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.button_detail_product {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #212121;
+    letter-spacing: 3.6px;
+    text-decoration: none;
+    box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+    border-radius: 23px;
+    background-color: #ffffff;
+    display: inline-block;
+    padding-left: 100px;
+    padding-right: 100px;
+    height: 45px;
+    line-height: 45px;
+    margin-left: 180px;
+
+}
+
+.button_detail_product:hover {
+    background-color: #f9f9f9;
+}
+
+.button_detail_product:active {
+    box-shadow: 0 0 5px 1px rgba(33, 33, 33, 0.35);
+    position: relative;
+    top: 4px;
+}
+
+.button_detail {
+    align-content: center;
+}
+
+.product_descript {
+    width: 350px;
+    height: 100px;
+    color: #6c6c6c;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 24.04px;
+    margin-top: 40px;
+    margin-left: 180px;
 }

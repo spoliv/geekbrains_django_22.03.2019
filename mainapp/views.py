@@ -1,6 +1,17 @@
 from django.shortcuts import render, get_object_or_404
 from .models import ProductCategory, Product
 
+def get_hot_product():
+
+    return  Product.objects.all().order_by('?').first()
+
+def get_same_products(hot_product):
+    same_products = Product.objects.filter(category=hot_product.category).\
+                                    exclude(pk=hot_product.pk)[:2]
+
+    return same_products
+
+
 def main(request):
     return render(request, 'mainapp/index.html',
     context={'title': 'home', 'main_menu': [{'href': 'index', 'name': 'home'},
@@ -33,16 +44,26 @@ def products(request, pk=None):
 
         return render(request, 'mainapp/catalog.html', context)
 
-    same_products = Product.objects.all()
+
+    hot_product = get_hot_product()
+    same_products = get_same_products(hot_product)
 
     context = {
-        'title': title,
+        'title': 'products',
         'cat_menu': categories,
+        'hot_product': hot_product,
         'same_products': same_products,
-        'basket': basket,
     }
-    return render(request, 'mainapp/catalog.html', context)
+    return render(request, 'mainapp/hot_products.html', context)
 
+def product(request, pk):
+    title = 'product_detailes'
+    context = {
+        'title': title,
+        'cat_menu': ProductCategory.objects.all(),
+        'product': get_object_or_404(Product, pk=pk)
+    }
+    return render(request, 'mainapp/product_detailes.html', context)
 
 def contact(request):
     return render(request, 'mainapp/contacts.html',
