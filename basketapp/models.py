@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from mainapp.models import Product
 
+
 class Basket(models.Model):
     class Meta:
         verbose_name = 'Корзина'

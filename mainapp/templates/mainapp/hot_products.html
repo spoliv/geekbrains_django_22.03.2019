@@ -28,9 +28,10 @@
               <div class="card-body">
                   <h5 class="card-title">{{ hot_product.name }}</h5>
                   <br><br>
-                  <div style="color: red">Горячее предложение</div>
+                  <div style="
+                  color: red">Горячее предложение</div>
                   <br><br>
-                  <a href="{% url 'basket:add' hot_product.pk %}" class="button">order us
+                  <a href="{% url 'products:product' hot_product.pk %}" class="button">order us
                       <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
               </div>
           </div>
@@ -44,7 +45,7 @@
                       <h5 class="card-title">{{ product.name }}</h5>
                       <p class="card-text">{{ product.short_desc }}</p>
                       <br><br>
-                  <a href="{% url 'basket:add' hot_product.pk %}" class="button">order us
+                  <a href="{% url 'products:product' product.pk %}" class="button">order us
                       <img src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
 
                   </div>

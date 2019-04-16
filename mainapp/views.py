@@ -25,7 +25,8 @@ def products(request, pk=None):
 
     title = 'catalog'
     categories = ProductCategory.objects.all()
-    basket = request.user.basket.all()
+    basket = request.user.basket.all()[0] if request.user.is_authenticated else []
+
     if pk:
         if pk == '0':
             products = Product.objects.all()
@@ -44,8 +45,8 @@ def products(request, pk=None):
 
         return render(request, 'mainapp/catalog.html', context)
 
-
     hot_product = get_hot_product()
+
     same_products = get_same_products(hot_product)
 
     context = {
@@ -56,7 +57,9 @@ def products(request, pk=None):
     }
     return render(request, 'mainapp/hot_products.html', context)
 
+
 def product(request, pk):
+
     title = 'product_detailes'
     context = {
         'title': title,
