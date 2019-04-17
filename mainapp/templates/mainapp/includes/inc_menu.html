@@ -1,6 +1,22 @@
 {% load staticfiles %}
 <ul class="menu">
     <li>
+        <a href="{% url 'basket:view' %}" class="menu-link">
+            <span>
+            {% if basket %}
+                {{ basket.total_cost|floatformat:0 }} руб
+                ({{ basket.total_quantity }} шт)
+            {% endif %}
+            </span>
+        </a>
+    </li>
+
+    {% if request.user.is_superuser %}
+        <li>
+            <a href="{% url 'admin_custom:categories' %}" class="menu-link">админка</a>
+    {% endif %}
+         </li>
+
         <a href="{% url 'index' %}" class="{% if request.resolver_match.url_name == 'index' %}
         menu-link-active menu-link
          {% else %}

@@ -2,7 +2,8 @@ from django.shortcuts import render, HttpResponseRedirect
 from authapp.forms import ShopUserLoginForm
 from django.contrib import auth
 from django.urls import reverse
-from authapp.forms import ShopUserRegisterForm
+from authapp.forms import ShopUserRegisterForm, ShopUserEditForm
+
 
 def register(request):
     title = 'регистрация'
@@ -43,9 +44,23 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('main'))
+    return HttpResponseRedirect(reverse('index'))
 
 
-from django.shortcuts import render
+def edit(request):
+    title = 'редактирование'
+
+    if request.method == 'POST':
+        edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)
+        if edit_form.is_valid():
+            edit_form.save()
+            return HttpResponseRedirect(reverse('main'))
+    else:
+        edit_form = ShopUserEditForm(instance=request.user)
+
+    context = {'title': title, 'form': edit_form}
+
+    return render(request, 'authapp/register.html', context)
+
 
 # Create your views here.

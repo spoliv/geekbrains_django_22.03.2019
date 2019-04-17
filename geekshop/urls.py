@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.conf.urls import include
 import mainapp.views as mainapp
 import authapp.views as authapp
+
 urlpatterns = [
     url(r'^$', mainapp.main, name='index'),
     url(r'^auth/', include('authapp.urls', namespace='auth')),
@@ -28,6 +29,7 @@ urlpatterns = [
     url(r'^showroom/', mainapp.showroom, name='showroom'),
     url(r'^contacts/', mainapp.contact, name='contacts'),
     url(r'^basket/', include('basketapp.urls', namespace='basket')),
+    url(r'^admin_custom/', include('adminapp.urls', namespace='admin_custom')),
     url(r'^admin/', admin.site.urls),
 ]
 

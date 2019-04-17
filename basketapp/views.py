@@ -3,12 +3,15 @@ from django.contrib.auth.decorators import login_required
 from .models import Basket
 from mainapp.models import Product
 
+
 @login_required
 def basket(request):
+
     basket_items = request.user.basket.all()
     return render(request, 'basketapp/basket.html', context={
         'basket_items': basket_items
     })
+
 
 @login_required
 def basket_add(request, pk):
@@ -36,6 +39,7 @@ def basket_remove(request, pk):
             basket.delete()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 
 @login_required
 def basket_edit(request, pk):
