@@ -1,6 +1,10 @@
 {% extends 'adminapp/base.html' %}
 {% load staticfiles %}
 
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+
 {% block content %}
   <div class="users_list">
     <button class="new_user">
