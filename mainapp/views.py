@@ -25,7 +25,7 @@ def products(request, pk=None):
 
     title = 'catalog'
     categories = ProductCategory.objects.all()
-    basket = request.user.basket.all()[0] if request.user.is_authenticated else []
+    #basket = request.user.basket.all()[0] if request.user.is_authenticated else []
 
     if pk:
         if pk == '0':
@@ -40,7 +40,6 @@ def products(request, pk=None):
             'cat_menu': categories,
             'category': category,
             'products': products,
-            'basket': basket,
         }
 
         return render(request, 'mainapp/catalog.html', context)

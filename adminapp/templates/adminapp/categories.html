@@ -27,6 +27,12 @@
 {#              товары категории#}
 {#            </a>#}
 {#          </button>#}
+
+            <button>
+            <a href={% url 'admin_custom:products' object.pk %}>
+              товары категории
+           </a>
+         </button>
           <button>
             <a href={% url 'admin_custom:category_update' object.pk %}>
               редактировать

@@ -1,12 +1,17 @@
 {% load staticfiles %}
+{% load custom_tags %}
 <ul class="menu">
     <li>
         <a href="{% url 'basket:view' %}" class="menu-link">
             <span>
-            {% if basket %}
-                {{ basket.total_cost|floatformat:0 }} руб
-                ({{ basket.total_quantity }} шт)
-            {% endif %}
+                {{ request.user|basket_total_cost }} руб.
+           {# {% if basket %} #}
+                 {# {{ basket.total_cost|floatformat:0 }} руб #}
+                 {# ({{ basket.total_quantity }} шт) #}
+           {#{% endif %} #}
+            </span>
+            <span>
+                {{ request.user|basket_total_quantity }} шт.
             </span>
         </a>
     </li>
@@ -16,7 +21,7 @@
             <a href="{% url 'admin_custom:categories' %}" class="menu-link">админка</a>
     {% endif %}
          </li>
-
+    <li>
         <a href="{% url 'index' %}" class="{% if request.resolver_match.url_name == 'index' %}
         menu-link-active menu-link
          {% else %}
@@ -33,19 +38,17 @@
     ">PRODUCTS</a>
     </li>
 
-
-                        <li><a href="#" class="menu-link">HISTORY </a></li>
-                        <li><a href="#" class="menu-link">SHOWROOM</a></li>
+    <li><a href="#" class="menu-link">HISTORY </a></li>
+    <li><a href="#" class="menu-link">SHOWROOM</a></li>
     <li>
         <a href="{% url 'contacts' %}" class="{% if request.resolver_match.url_name == 'contacts' %}
         menu-link-active menu-link
          {% else %}
           menu-link
-         {% endif %}
-        ">CONTACT</a>
+         {% endif %}">CONTACT
+        </a>
     </li>
-
-                        <li>
-                            <a href="{% url 'index' %}" class="menu-link"><img src="{% static 'img/search.svg' %}" alt="search"></a>
-                        </li>
+    <li>
+        <a href="{% url 'index' %}" class="menu-link"><img src="{% static 'img/search.svg' %}" alt="search"></a>
+    </li>
 </ul>
