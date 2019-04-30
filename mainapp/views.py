@@ -1,14 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from .models import ProductCategory, Product
 
-def get_hot_product():
 
-    return  Product.objects.all().order_by('?').first()
+def get_hot_product():
+    return Product.objects.all().order_by('?').first()
+
 
 def get_same_products(hot_product):
     same_products = Product.objects.filter(category=hot_product.category).\
                                     exclude(pk=hot_product.pk)[:2]
-
     return same_products
 
 
@@ -24,7 +24,7 @@ def main(request):
 def products(request, pk=None):
 
     title = 'catalog'
-    categories = ProductCategory.objects.all()
+    #categories = ProductCategory.objects.all()
     #basket = request.user.basket.all()[0] if request.user.is_authenticated else []
 
     if pk:
@@ -37,7 +37,7 @@ def products(request, pk=None):
 
         context = {
             'title': title,
-            'cat_menu': categories,
+            #'cat_menu': categories,
             'category': category,
             'products': products,
         }
@@ -50,7 +50,7 @@ def products(request, pk=None):
 
     context = {
         'title': 'products',
-        'cat_menu': categories,
+        #'cat_menu': categories,
         'hot_product': hot_product,
         'same_products': same_products,
     }
@@ -62,15 +62,14 @@ def product(request, pk):
     title = 'product_detailes'
     context = {
         'title': title,
-        'cat_menu': ProductCategory.objects.all(),
-        'product': get_object_or_404(Product, pk=pk)
+        #'cat_menu': ProductCategory.objects.all(),
+        'product': get_object_or_404(Product, pk=pk),
     }
     return render(request, 'mainapp/product_detailes.html', context)
 
 def contact(request):
     return render(request, 'mainapp/contacts.html',
     context={'title': 'contacts'})
-
 
 
 def showroom(request):
