@@ -152,6 +152,8 @@ LOGIN_URL = '/auth/login/'
 
 DOMAIN_NAME = 'http://localhost:8000'
 
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
 # EMAIL_HOST = 'localhost'
 # EMAIL_PORT = '25'
 # EMAIL_HOST_USER = 'django@geekshop.local'
@@ -165,13 +167,13 @@ EMAIL_FILE_PATH = 'tmp/email-messages/'
 
 
 # OAUTH 2
-# AUTHENTICATION_BACKENDS = [
-#     'social_core.backends.vk.VKOAuth2',
-#     'django.contrib.auth.backends.ModelBackend',
-# ]
-#
-# SOCIAL_AUTH_VK_OAUTH2_KEY = config.get('OAUTH2', 'SOCIAL_AUTH_VK_OAUTH2_KEY')
-# SOCIAL_AUTH_VK_OAUTH2_SECRET = config.get('OAUTH2', 'SOCIAL_AUTH_VK_OAUTH2_SECRET')
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.vk.VKOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+    ]
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = config.get('OAUTH2', 'SOCIAL_AUTH_VK_OAUTH2_KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = config.get('OAUTH2', 'SOCIAL_AUTH_VK_OAUTH2_SECRET')
 
 
 LOGIN_REDIRECT_URL = '/'

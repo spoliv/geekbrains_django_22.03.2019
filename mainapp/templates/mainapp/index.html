@@ -14,11 +14,12 @@
             {% block content %}
                 <div class="temp_div">
 {% if user.is_anonymous %}
-        <h3>Привет!</h3>
+        <h3>Привет!</h3><br>
         <div>
             Выполни<a href="{% url 'auth:login' %}"> вход </a> или
-            <a href="{% url 'auth:register' %}">зарегистрируйся</a><br><br>
-                    или войти через <a href="http://127.0.0.1:8000/social/login/vk-oauth2/">через VK </a>
+            <a href="{% url 'auth:register' %}">зарегистрируйся</a>
+{#                <br><br>#}
+{#                    или войти через <a href="http://127.0.0.1:8000/social/login/vk-oauth2/">через VK </a>#}
         </div>
     {% else %}
         <h2>Привет, {{ user.username|title }}!</h2>
