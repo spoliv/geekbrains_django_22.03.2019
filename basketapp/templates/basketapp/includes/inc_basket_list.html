@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load custom_tags %}
 
 {% for item in basket_items %}
 <div class="basket_record">
@@ -18,14 +19,14 @@
   </button>
 </div>
 {% endfor %}
-
+<br>
 {% if basket_items %}
 <div class="basket_summary">
-  В корзине {{ basket_items.0.total_quantity }} товаров общей стоимостью
-            {{ basket_items.0.total_cost }} руб
+  В корзине {{ request.user|basket_total_quantity }} товаров общей стоимостью
+    {{ request.user|basket_total_cost }} руб
 </div>
 {% endif %}
-
+<br>
 <button class="btn btn-round">
   <a href="{% url 'index' %}">на главную</a>
 </button>
