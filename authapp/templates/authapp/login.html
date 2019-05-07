@@ -10,12 +10,17 @@
         {{ login_form.as_p }}
         <br>
         <input class="form-control" type="submit" value="войти">
-        <br>
-        <button class="btn btn-round form-control">
-            <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/">
+        <a href="{% url 'auth:register' %}" class="btn btn-round form-control">
+                Зарегистрироваться
+            </a><br>
+            <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/"
+            class="btn btn-round form-control">
                 Вход через ВКонтакте
+            </a><br>
+            <a href="{% url 'social:begin' 'google-oauth2' %}?next=/"
+               class="btn btn-вуафгде form-control">
+                Вход через Google+
             </a>
-        </button>
     </form>
 
 {% endblock %}

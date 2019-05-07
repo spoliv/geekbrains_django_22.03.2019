@@ -67,6 +67,7 @@ def product(request, pk):
     }
     return render(request, 'mainapp/product_detailes.html', context)
 
+
 def contact(request):
     return render(request, 'mainapp/contacts.html',
     context={'title': 'contacts'})
