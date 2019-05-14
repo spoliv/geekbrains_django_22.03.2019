@@ -3,9 +3,10 @@ from datetime import datetime
 from urllib.parse import urlencode, urlunparse
 
 import requests
+from io import BytesIO
 from django.utils import timezone
 from social_core.exceptions import AuthForbidden
-
+from django.core import files
 from authapp.models import ShopUserProfile
 
 
@@ -23,6 +24,17 @@ def save_user_profile(backend, user, response, *args, **kwargs):
 
         if 'aboutMe' in response.keys():
             user.shopuserprofile.aboutMe = response['aboutMe']
+
+        if 'picture' in response.keys():
+            url = response['picture']
+            resp = requests.get(url)
+            if resp.status_code != requests.codes.ok:
+                print('error')
+
+            fp = BytesIO()
+            fp.write(resp.content)
+            file_name = url.split("/")[-1]
+            user.avatar.save(file_name, files.File(fp))
 
         if 'ageRange' in response.keys():
             minAge = response['ageRange']['min']
@@ -53,6 +65,18 @@ def save_user_profile(backend, user, response, *args, **kwargs):
 
         if data['about']:
             user.shopuserprofile.aboutMe = data['about']
+
+        if 'photo' in response.keys():
+            url = response['photo']
+            resp = requests.get(url)
+            print(f'{resp} | {resp.content}')
+            if resp.status_code != requests.codes.ok:
+                print('error')
+
+            fp = BytesIO()
+            fp.write(resp.content)
+            file_name = url.split("/")[-1]
+            user.avatar.save(file_name, files.File(fp))
 
         if data['bdate']:
             bdate = datetime.strptime(data['bdate'], '%d.%m.%Y').date()

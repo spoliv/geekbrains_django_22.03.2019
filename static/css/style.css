@@ -998,3 +998,28 @@ img[alt="small-chair"] {
 .active {
     background-color: lightblue;
 }
+
+.menu-in {
+    display: none;
+    list-style-type: none;
+}
+
+.user-link {
+    color: black;
+    font-weight: 600;
+}
+.user-link:hover .menu-in{
+    display: block;
+}
+
+.order_container {
+    margin: 25px auto;
+    width: 900px;
+}
+
+.basket_record {
+    position: relative;
+    display: block;
+    height: 170px;
+    float: none;
+}

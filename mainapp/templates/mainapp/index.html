@@ -13,25 +13,25 @@
             
             {% block content %}
                 <div class="temp_div">
-{% if user.is_anonymous %}
-        <h3>Привет!</h3><br>
-        <div>
-            Выполни<a href="{% url 'auth:login' %}"> вход </a> или
-            <a href="{% url 'auth:register' %}">зарегистрируйся</a>
-        </div>
-    {% else %}
-    <h2>Привет, <a href="{% url 'auth:edit' %}">{{ user.username|title }}</a>!</h2>
-    {% endif %}
-<div>{{ items.1 }}</div>
-{% for item in items %}
-    {% if item != 'item2' %}
-        <p>{{ item }}</p>
-    {% endif %}
-{% endfor %}
-                <br>
-    {% if user.is_authenticated %}
-        <a href="{% url 'auth:logout' %}">Выход</a>
-    {% endif %}
+{#{% if user.is_anonymous %}#}
+{#        <h3>Привет!</h3><br>#}
+{#        <div>#}
+{#            Выполни<a href="{% url 'auth:login' %}"> вход </a> или#}
+{#            <a href="{% url 'auth:register' %}">зарегистрируйся</a>#}
+{#        </div>#}
+{#    {% else %}#}
+{#    <h2>Привет, <a href="{% url 'auth:edit' %}">{{ user.username|title }}</a>!</h2>#}
+{#    {% endif %}#}
+{#<div>{{ items.1 }}</div>#}
+{#{% for item in items %}#}
+{#    {% if item != 'item2' %}#}
+{#        <p>{{ item }}</p>#}
+{#    {% endif %}#}
+{#{% endfor %}#}
+{#                <br>#}
+{#    {% if user.is_authenticated %}#}
+{#        <a href="{% url 'auth:logout' %}">Выход</a>#}
+{#    {% endif %}#}
                 </div>
             {% endblock %}
             
