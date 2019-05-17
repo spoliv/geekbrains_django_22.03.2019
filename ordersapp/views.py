@@ -7,6 +7,10 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+from django.dispatch import receiver
+from django.db.models.signals import pre_save, pre_delete
+
+from basketapp.models import Basket
 from ordersapp.forms import OrderForm, OrderItemForm
 from ordersapp.models import Order, OrderItem
 
@@ -40,6 +44,7 @@ class OrderItemsCreate(CreateView):
                 for num, form in enumerate(formset.forms):
                     form.initial['product'] = basket_items[num].product
                     form.initial['quantity'] = basket_items[num].quantity
+                    form.initial['price'] = basket_items[num].product.price
             else:
                 formset = OrderFormSet()
 
@@ -59,8 +64,8 @@ class OrderItemsCreate(CreateView):
             self.request.user.basket.all().delete()
 
         # удаляем пустой заказ
-        # if self.object.get_total_cost() == 0:
-        #     self.object.delete()
+        if self.object.get_total_cost() == 0:
+            self.object.delete()
 
         return super().form_valid(form)
 
@@ -86,7 +91,12 @@ class OrderItemsUpdate(UpdateView):
         if self.request.POST:
             data['orderitems'] = OrderFormSet(self.request.POST, self.request.FILES, instance=self.object)
         else:
-            data['orderitems'] = OrderFormSet(instance=self.object)
+            # data['orderitems'] = OrderFormSet(instance=self.object)
+            formset = OrderFormSet(instance=self.object)
+            for form in formset.forms:
+                if form.instance.pk:
+                    form.initial['price'] = form.instance.product.price
+            data['orderitems'] = formset
 
         return data
 
@@ -100,9 +110,9 @@ class OrderItemsUpdate(UpdateView):
                 orderitems.instance = self.object
                 orderitems.save()
 
-        # # удаляем пустой заказ
-        # if self.object.get_total_cost() == 0:
-        #     self.object.delete()
+        #  удаляем пустой заказ
+        if self.object.get_total_cost() == 0:
+            self.object.delete()
 
         return super().form_valid(form)
 
@@ -118,4 +128,21 @@ def order_forming_complete(request, pk):
    order.save()
 
    return HttpResponseRedirect(reverse('ordersapp:zakazes_list'))
+
+@receiver(pre_save, sender=OrderItem)
+@receiver(pre_save, sender=Basket)
+def product_quantity_update_save(sender, update_fields, instance, **kwargs):
+    if instance.pk:
+        instance.product.quantity -= instance.quantity - sender.get_item(instance.pk).quantity
+    else:
+        instance.product.quantity -= instance.quantity
+    instance.product.save()
+
+
+@receiver(pre_delete, sender=OrderItem)
+@receiver(pre_delete, sender=Basket)
+def product_quantity_update_delete(sender, instance, **kwargs):
+    # print(sender, type(instance))
+    instance.product.quantity += instance.quantity
+    instance.product.save()
 # Create your views here.

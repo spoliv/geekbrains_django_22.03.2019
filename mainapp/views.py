@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from .models import ProductCategory, Product
 
+from django.template.loader import render_to_string
+from django.http import JsonResponse
+
 
 def get_hot_product():
     return Product.objects.all().order_by('?').first()
@@ -65,6 +68,10 @@ def product(request, pk):
         #'cat_menu': ProductCategory.objects.all(),
         'product': get_object_or_404(Product, pk=pk),
     }
+    if request.is_ajax():
+        product = get_object_or_404(Product, pk=pk)
+        return JsonResponse({'result': product.price})
+
     return render(request, 'mainapp/product_detailes.html', context)
 
 
